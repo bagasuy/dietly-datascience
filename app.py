@@ -25,7 +25,16 @@ st.set_page_config(
 BASE_DIR = Path(__file__).resolve().parent
 DATA_PATH = BASE_DIR / "data" / "raw" / "data.csv"
 
-df = pd.read_csv(DATA_PATH)
+DATA_URL = (
+    "https://drive.google.com/uc"
+    "?export=download"
+    "&id=1ri2oGQioEN-tWBNy1STueqZkInLhIN2x"
+)
+
+if DATA_PATH.exists():
+    df = pd.read_csv(DATA_PATH)
+else:
+    df = pd.read_csv(DATA_URL)
 
 df["date"] = pd.to_datetime(df["date"])
 
